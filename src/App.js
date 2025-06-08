@@ -1,7 +1,10 @@
 import Worldcard from './components/worldcard';
 function App() {
   return (
-    <Worldcard />
+    <div>
+      <Worldcard />
+      <Footer/>
+    </div>
   );
 }
 
