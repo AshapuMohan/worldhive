@@ -1,29 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-
 const Footer = () => {
-  const [showButton, setShowButton] = useState(false);
-  const footerRef = useRef(null);
-
-  useEffect(() => {
-    const footer = footerRef.current;
-    if (!footer) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowButton(entry.isIntersecting);
-      },
-      {
-        root: null,
-        threshold: 0.1,
-      }
-    );
-
-    observer.observe(footer);
-
-    return () => {
-      if (footer) observer.unobserve(footer);
-    };
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -31,20 +6,18 @@ const Footer = () => {
 
   return (
     <footer
-      ref={footerRef}
-      className="relative bg-black text-white flex flex-col items-center justify-center py-6 rounded-t-lg"
+      className="bg-black text-white flex flex-col items-center justify-center py-6 rounded-t-lg"
     >
-      {showButton && (
+
         <button
           onClick={scrollToTop}
           aria-label="Back to Top"
           title="Back to Top"
-          className="absolute -top-6 right-5 bg-gray-600 text-white p-3 rounded-full shadow-lg cursor-pointer animate-bounce"
+          className="fixed bottom-10 right-5 bg-gray-600 text-white p-3 rounded-full shadow-lg cursor-pointer animate-bounce"
           style={{ width: '48px', height: '48px' }}
         >
           <i className="fa-solid fa-arrow-up text-xl"></i>
         </button>
-      )}
 
       <p className="text-lg text-gray-300 mb-2">Connect with me on social media</p>
 
